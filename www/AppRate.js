@@ -56,12 +56,12 @@ AppRate = (function() {
       case 0:
         updateCounter('reset');
         break;
-      case 1:
-        currentBtn = localeObj.noButtonLabel;
-        if(typeof base.handleNegativeFeedback === "function") {
-          navigator.notification.confirm(localeObj.feedbackPromptMessage, promptForFeedbackWindowButtonClickHandler, localeObj.feedbackPromptTitle, [localeObj.noButtonLabel, localeObj.yesButtonLabel]);
-        }
-        break;
+      // case 1:
+      //   currentBtn = localeObj.noButtonLabel;
+      //   if(typeof base.handleNegativeFeedback === "function") {
+      //     navigator.notification.confirm(localeObj.feedbackPromptMessage, promptForFeedbackWindowButtonClickHandler, localeObj.feedbackPromptTitle, [localeObj.noButtonLabel, localeObj.yesButtonLabel]);
+      //   }
+      //   break;
       case 2:
         currentBtn = localeObj.yesButtonLabel;
         navigator.notification.confirm(localeObj.message, promptForStoreRatingWindowButtonClickHandler, localeObj.title, [localeObj.cancelButtonLabel, localeObj.laterButtonLabel, localeObj.rateButtonLabel])
@@ -96,21 +96,21 @@ AppRate = (function() {
     return typeof base.done === "function" ? base.done() : function(){ };
   };
 
-  promptForFeedbackWindowButtonClickHandler = function(buttonIndex) {
-    var base = AppRate.preferences.callbacks, currentBtn = null;
-    switch (buttonIndex) {
-      case 1:
-        currentBtn = localeObj.noButtonLabel;
-        updateCounter('stop');
-        break;
-      case 2:
-        currentBtn = localeObj.yesButtonLabel;
-        updateCounter('stop');
-        base.handleNegativeFeedback();
-        break;
-    }
-    return typeof base.onButtonClicked === "function" ? base.onButtonClicked(buttonIndex, currentBtn, "FeedbackPrompt") : function(){ };
-  };
+  // promptForFeedbackWindowButtonClickHandler = function(buttonIndex) {
+  //   var base = AppRate.preferences.callbacks, currentBtn = null;
+  //   switch (buttonIndex) {
+  //     case 1:
+  //       currentBtn = localeObj.noButtonLabel;
+  //       updateCounter('stop');
+  //       break;
+  //     case 2:
+  //       currentBtn = localeObj.yesButtonLabel;
+  //       updateCounter('stop');
+  //       base.handleNegativeFeedback();
+  //       break;
+  //   }
+  //   return typeof base.onButtonClicked === "function" ? base.onButtonClicked(buttonIndex, currentBtn, "FeedbackPrompt") : function(){ };
+  // };
 
   updateCounter = function(action) {
     if (action == null) {
